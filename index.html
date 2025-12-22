@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta Ecosistema Digital MU -</title>
+    <title>Propuesta Ecosistema Digital MU - 2025</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1A4D3F; /* Verde Humedal Oscuro */
             --secondary: #3B82F6; /* Azul Tecnológico */
             --accent: #F59E0B; /* Dorado/Tierra */
+            --nature: #65a30d; /* Verde Lima/Naturaleza */
+            --nature-light: #ecfccb;
             --dark: #111827;
             --light: #F3F4F6;
             --white: #FFFFFF;
@@ -100,6 +102,16 @@
             grid-template-columns: repeat(3, 1fr); /* 3 Phones side by side */
             gap: 30px;
             margin-bottom: 60px;
+            justify-items: center;
+        }
+        
+        /* New grid for 2 items centered */
+        .mockup-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 700px;
+            margin: 0 auto 60px;
             justify-items: center;
         }
 
@@ -219,6 +231,30 @@
             padding: 10px; border-radius: 8px; color: white; display: flex; align-items: center; gap: 10px;
         }
         
+        /* GALLERY & EDUCATION UI */
+        .gallery-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 15px;
+        }
+        .gallery-item {
+            aspect-ratio: 1; background: #eee; border-radius: 8px; position: relative; overflow: hidden;
+            background-size: cover; background-position: center;
+        }
+        .gallery-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); 
+            color: white; font-size: 0.6rem; padding: 5px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        
+        .edu-card {
+            background: white; border-radius: 15px; margin: 20px; padding: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center;
+        }
+        .edu-icon { font-size: 3rem; margin-bottom: 10px; }
+        .edu-btn {
+            background: var(--accent); color: white; border: none; padding: 10px 20px; 
+            border-radius: 50px; font-weight: bold; margin-top: 15px; cursor: pointer; width: 100%;
+        }
+
         /* HEATMAP UI Specifics */
         .dashboard-layout { display: flex; height: 100%; font-family: sans-serif; }
         .sidebar { width: 200px; background: #1e293b; color: #94a3b8; padding: 20px; display: none; }
@@ -227,7 +263,7 @@
         .dash-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 15px; }
         .heatmap-container { 
             flex: 1; background: #e2e8f0; border-radius: 8px; position: relative; overflow: hidden;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
         .heat-blob {
             position: absolute; border-radius: 50%; filter: blur(20px); opacity: 0.6;
@@ -270,6 +306,7 @@
         @media screen and (max-width: 900px) {
             .grid-2, .grid-3 { grid-template-columns: 1fr; }
             .mockup-grid { grid-template-columns: 1fr; }
+            .mockup-grid-2 { grid-template-columns: 1fr; }
             .timeline::after { left: 31px; }
             .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
             .timeline-container::after { left: 21px; }
@@ -459,6 +496,127 @@
                          </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- SECOND ROW: COMMUNITY & EDUCATION -->
+            <h3 class="text-center mb-4" style="color:var(--white); opacity:0.8; font-size: 1.2rem;">COMUNIDAD Y EDUCACIÓN</h3>
+            <div class="mockup-grid-2">
+                
+                <!-- PHONE 4: GALERÍA CIUDADANA -->
+                <div class="phone-frame">
+                    <div class="notch"></div>
+                    <div style="height:100%; background:#fff; display:flex; flex-direction:column;">
+                        <div class="app-header" style="background:#2c3e50;">
+                            <span class="ui-tag">Comunidad</span>
+                            <h3 style="margin:0;">Avistamientos</h3>
+                        </div>
+                        <!-- Filter Bar -->
+                        <div style="padding: 10px; background: #f1f5f9; display: flex; gap: 8px; overflow-x: auto;">
+                            <span style="background:var(--secondary); color:white; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem;">Todos</span>
+                            <span style="background:white; color:#666; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; border:1px solid #ddd;">Aves</span>
+                            <span style="background:white; color:#666; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; border:1px solid #ddd;">Flora</span>
+                            <span style="background:white; color:#666; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; border:1px solid #ddd;">Fungi</span>
+                        </div>
+                        <div style="flex:1; overflow-y:auto; padding-bottom: 10px;">
+                            <div class="gallery-grid">
+                                <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1456534571764-77a330441655?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+                                    <div class="gallery-overlay">
+                                        <span>📸 @ana.g</span>
+                                        <span>❤️ 12</span>
+                                    </div>
+                                </div>
+                                <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+                                    <div class="gallery-overlay">
+                                        <span>🌿 @profe_bio</span>
+                                        <span>❤️ 45</span>
+                                    </div>
+                                </div>
+                                <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1549608276-5786777e6587?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+                                    <div class="gallery-overlay">
+                                        <span>🦆 @observador</span>
+                                        <span>❤️ 8</span>
+                                    </div>
+                                </div>
+                                <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1518796745738-41048802f99a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80');">
+                                    <div class="gallery-overlay">
+                                        <span>🐞 @macro_chile</span>
+                                        <span>❤️ 23</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Featured Entry Card -->
+                            <div style="margin: 0 15px; padding: 10px; border: 1px solid #eee; border-radius: 8px; display:flex; align-items:center; gap:10px;">
+                                <div style="width:40px; height:40px; background:var(--accent); border-radius:50%; color:white; display:flex; align-items:center; justify-content:center;">🏆</div>
+                                <div>
+                                    <div style="font-size:0.7rem; font-weight:bold; color:var(--dark);">Reto Semanal</div>
+                                    <div style="font-size:0.6rem; color:#666;">Encuentra 3 tipos de plantas acuáticas.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding:15px; border-top: 1px solid #eee;">
+                            <button style="width:100%; background:var(--primary); color:white; border:none; padding:12px; border-radius:8px; display:flex; justify-content:center; align-items:center; gap:10px; cursor: pointer;">
+                                📷 <span>Subir Hallazgo</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHONE 5: EDUCACIÓN / AULA NATURAL -->
+                <div class="phone-frame">
+                    <div class="notch"></div>
+                    <div style="height:100%; background:var(--nature-light); display:flex; flex-direction:column;">
+                        <div class="app-header" style="background:var(--nature);">
+                            <span class="ui-tag">Aula Natural</span>
+                            <h3 style="margin:0;">Aprende</h3>
+                        </div>
+                        <div style="flex:1; padding:20px; overflow-y: auto;">
+                            
+                            <!-- Daily Fact -->
+                            <div style="background:white; padding:15px; border-radius:12px; margin-bottom:20px; box-shadow:0 4px 10px rgba(0,0,0,0.05);">
+                                <div style="font-size:0.65rem; color:var(--nature); font-weight:bold; text-transform:uppercase; margin-bottom:5px;">💡 ¿Sabías qué?</div>
+                                <p style="font-size:0.8rem; color:#444; line-height:1.4;">Un metro cuadrado de humedal puede capturar más carbono que un bosque tropical.</p>
+                            </div>
+
+                            <h4 style="font-size:0.9rem; color:#365314; margin-bottom:15px;">Ruta de Aprendizaje</h4>
+                            
+                            <!-- Lesson List -->
+                            <div style="display:flex; flex-direction:column; gap:15px;">
+                                <!-- Lesson 1 (Completed) -->
+                                <div style="display:flex; align-items:center; gap:15px;">
+                                    <div style="width:40px; height:40px; background:var(--nature); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1.2rem;">✅</div>
+                                    <div style="background:white; padding:12px; border-radius:10px; flex:1; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+                                        <div style="font-size:0.8rem; font-weight:bold; color:#333;">1. El Ciclo del Agua</div>
+                                        <div style="font-size:0.7rem; color:#888;">Completado</div>
+                                    </div>
+                                </div>
+                                <!-- Connection Line -->
+                                <div style="width:2px; height:15px; background:#cbd5e1; margin-left:20px;"></div>
+                                
+                                <!-- Lesson 2 (Active) -->
+                                <div style="display:flex; align-items:center; gap:15px;">
+                                    <div style="width:40px; height:40px; background:white; border:3px solid var(--nature); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--nature); font-weight:bold;">2</div>
+                                    <div style="background:white; padding:12px; border-radius:10px; flex:1; box-shadow:0 5px 15px rgba(101,163,13,0.2); border:1px solid #bef264;">
+                                        <div style="font-size:0.8rem; font-weight:bold; color:#333;">Biodiversidad Local</div>
+                                        <div style="font-size:0.7rem; color:var(--nature);">En curso...</div>
+                                        <button style="margin-top:8px; width:100%; background:var(--nature); color:white; border:none; padding:6px; border-radius:4px; font-size:0.7rem; cursor:pointer;">Continuar</button>
+                                    </div>
+                                </div>
+                                <!-- Connection Line -->
+                                <div style="width:2px; height:15px; background:#cbd5e1; margin-left:20px;"></div>
+
+                                <!-- Lesson 3 (Locked) -->
+                                <div style="display:flex; align-items:center; gap:15px; opacity:0.6;">
+                                    <div style="width:40px; height:40px; background:#e2e8f0; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#94a3b8;">🔒</div>
+                                    <div style="background:white; padding:12px; border-radius:10px; flex:1;">
+                                        <div style="font-size:0.8rem; font-weight:bold; color:#666;">Conservación</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- DESKTOP DASHBOARD SHOWCASE -->
