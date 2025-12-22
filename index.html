@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Ecosistema Digital MU -</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A4D3F; /* Verde Humedal Oscuro */
+            --secondary: #3B82F6; /* Azul Tecnológico */
+            --accent: #F59E0B; /* Dorado/Tierra */
+            --dark: #111827;
+            --light: #F3F4F6;
+            --white: #FFFFFF;
+            --border: #E5E7EB;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--dark); 
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        /* UTILITIES */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 80px 0; }
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-accent { color: var(--accent); }
+        .bg-light { background-color: var(--light); }
+        .bg-white { background-color: var(--white); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 2rem; }
+        
+        /* HEADER */
+        header {
+            background: linear-gradient(rgba(26, 77, 63, 0.9), rgba(26, 77, 63, 0.8)), url('https://images.unsplash.com/photo-1542358876-0cf8794c4804?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        header h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; line-height: 1.1; }
+        header h2 { font-size: 1.5rem; font-weight: 400; opacity: 0.9; margin-bottom: 20px; }
+        header .badge { 
+            background: var(--secondary); color: white; padding: 5px 15px; 
+            border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* SECTION HEADERS */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
+        .section-title p { color: #666; max-width: 700px; margin: 0 auto; }
+
+        /* RESUMEN CARD */
+        .vision-card {
+            background: white;
+            border-left: 5px solid var(--primary);
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+            border-radius: 8px;
+        }
+
+        /* GOBERNANZA */
+        .team-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+        .team-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .team-header { display: flex; align-items: center; margin-bottom: 20px; }
+        .avatar { width: 60px; height: 60px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; margin-right: 15px; }
+        .role-tag { font-size: 0.8rem; text-transform: uppercase; color: var(--secondary); font-weight: 700; letter-spacing: 1px; }
+
+        /* MOCKUP SECTION COMPLETE OVERHAUL */
+        .tech-showcase {
+            background: #111;
+            color: white;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 Phones side by side */
+            gap: 30px;
+            margin-bottom: 60px;
+            justify-items: center;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* PHONE FRAME */
+        .phone-frame {
+            width: 260px; /* Slightly smaller to fit 3 */
+            height: 540px;
+            border: 8px solid #333;
+            border-radius: 30px;
+            background: #fff;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            color: #333;
+        }
+        .notch {
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 90px; height: 18px; background: #333; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 10;
+        }
+
+        /* LAPTOP FRAME */
+        .laptop-frame {
+            width: 100%;
+            padding-top: 62.5%; /* Aspect Ratio 16:10 */
+            position: relative;
+            background: #222;
+            border-radius: 15px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            border: 1px solid #444;
+        }
+        .laptop-screen {
+            position: absolute;
+            top: 3%; left: 3%; right: 3%; bottom: 8%;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .laptop-base {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 5%;
+            background: #333;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        /* APP UI COMMONS */
+        .app-header { background: var(--primary); padding: 35px 20px 15px; color: white; }
+        .ui-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+        
+        /* AR CAMERA UI */
+        .ar-camera-view {
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1544976766-31a815a5198e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80') center/cover;
+            position: relative;
+        }
+        .ar-reticle {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 150px; height: 150px; border: 2px dashed rgba(255,255,255,0.7); border-radius: 10px;
+        }
+        .ar-animal-model {
+            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 5rem; text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+        .ar-info-card {
+            position: absolute; bottom: 20px; left: 15px; right: 15px;
+            background: rgba(255,255,255,0.95); border-radius: 12px; padding: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* GAMIFICATION UI */
+        .passport-header {
+            background: var(--dark); color: white; padding: 40px 20px 20px; text-align: center;
+        }
+        .user-level {
+            width: 80px; height: 80px; background: var(--accent); border-radius: 50%; 
+            margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .badges-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 20px;
+        }
+        .badge-item {
+            aspect-ratio: 1; background: #eee; border-radius: 10px; display: flex; 
+            align-items: center; justify-content: center; font-size: 1.5rem; opacity: 0.3;
+        }
+        .badge-item.unlocked { background: #dbeafe; opacity: 1; border: 2px solid var(--secondary); }
+
+        /* 360 UI Specifics */
+        .video-360-view {
+            height: 100%;
+            background: #000;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1596327038475-6e39263a4369?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .video-overlay {
+            position: absolute; inset: 0; background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.8));
+            display: flex; flex-direction: column; justify-content: space-between; padding: 80px 20px 30px;
+        }
+        .gyro-icon {
+            width: 60px; height: 60px; border: 2px solid white; border-radius: 50%; 
+            margin: 0 auto; display: flex; align-items: center; justify-content: center;
+            animation: rotate 4s infinite linear;
+        }
+        .audio-player {
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);
+            padding: 10px; border-radius: 8px; color: white; display: flex; align-items: center; gap: 10px;
+        }
+        
+        /* HEATMAP UI Specifics */
+        .dashboard-layout { display: flex; height: 100%; font-family: sans-serif; }
+        .sidebar { width: 200px; background: #1e293b; color: #94a3b8; padding: 20px; display: none; }
+        .main-content { flex: 1; padding: 20px; display: flex; flex-direction: column; }
+        .dash-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .dash-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 15px; }
+        .heatmap-container { 
+            flex: 1; background: #e2e8f0; border-radius: 8px; position: relative; overflow: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .heat-blob {
+            position: absolute; border-radius: 50%; filter: blur(20px); opacity: 0.6;
+        }
+        .blob-red { width: 100px; height: 100px; background: red; top: 30%; left: 40%; }
+        .blob-yellow { width: 80px; height: 80px; background: orange; top: 50%; left: 60%; }
+        .blob-green { width: 120px; height: 120px; background: green; top: 20%; left: 20%; }
+        
+        .floating-stat {
+            position: absolute; top: 20px; right: 20px; background: white; padding: 10px 15px; 
+            border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-size: 0.8rem; font-weight: bold;
+            border-left: 4px solid #ef4444;
+        }
+
+        @media (min-width: 768px) {
+            .sidebar { display: block; }
+        }
+        
+        @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes float { 0% { transform: translate(-50%, -50%); } 50% { transform: translate(-50%, -60%); } 100% { transform: translate(-50%, -50%); } }
+
+        /* PRESUPUESTO TABLE */
+        .budget-table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .budget-table th { background: var(--primary); color: white; text-align: left; padding: 15px; }
+        .budget-table td { padding: 15px; border-bottom: 1px solid #eee; }
+        .budget-table tr:last-child td { font-weight: bold; background: #f9f9f9; }
+        .total-row { background: var(--dark) !important; color: white; font-size: 1.2rem; }
+
+        /* TIMELINE */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--secondary); top: 0; bottom: 0; left: 50%; margin-left: -2px; }
+        .timeline-container { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; }
+        .timeline-container::after { content: ''; position: absolute; width: 20px; height: 20px; right: -10px; background-color: white; border: 4px solid var(--secondary); top: 15px; border-radius: 50%; z-index: 1; }
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; }
+        .right::after { left: -10px; }
+        .content { padding: 20px; background-color: white; position: relative; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        /* RESPONSIVE */
+        @media screen and (max-width: 900px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .mockup-grid { grid-template-columns: 1fr; }
+            .timeline::after { left: 31px; }
+            .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-container::after { left: 21px; }
+            .left { text-align: left; }
+            header h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <span class="badge">Propuesta 2025</span>
+            <h1>ECOSISTEMA DIGITAL "MU"</h1>
+            <h2>De la Consolidación de MUM Mayaca al Estándar Nacional (SaaS)</h2>
+            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Infraestructura Tecnológica Paquetizada para la gestión ambiental y turística de humedales urbanos.</p>
+        </div>
+    </header>
+
+    <!-- RESUMEN EJECUTIVO -->
+    <section class="container">
+        <div class="vision-card">
+            <h3 class="text-primary" style="margin-bottom: 15px;">1. RESUMEN EJECUTIVO Y VISIÓN</h3>
+            <p>El proyecto "MU" nace para resolver una brecha crítica: la desconexión entre la ciudadanía y los humedales urbanos. Utilizando al <strong>Humedal Mayaca (Quillota)</strong> como "Nodo Cero", esta propuesta no busca desarrollar una app aislada, sino construir un <strong>Sistema Operativo para Humedales</strong> replicable en los más de 300 municipios del país.</p>
+            <div class="grid-3" style="margin-top: 30px; text-align: center;">
+                <div>
+                    <h4 class="text-secondary">Ingeniería Offline-First</h4>
+                    <p style="font-size: 0.9rem;">Funcionalidad total en zonas sin cobertura.</p>
+                </div>
+                <div>
+                    <h4 class="text-secondary">Realidad Aumentada</h4>
+                    <p style="font-size: 0.9rem;">Visualización científica "in-situ" (Asset Flipping).</p>
+                </div>
+                <div>
+                    <h4 class="text-secondary">Modelo SaaS</h4>
+                    <p style="font-size: 0.9rem;">Arquitectura Multi-Tenant replicable a costo marginal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GOBERNANZA -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>2. GOBERNANZA DEL PROYECTO</h2>
+                <p>Estructura de mando dual donde la visión política/comercial y la ejecución técnica tienen el mismo peso estratégico.</p>
+            </div>
+            
+            <div class="grid-2">
+                <!-- Javier Moya -->
+                <div class="team-card bg-white">
+                    <div class="team-header">
+                        <div class="avatar">JM</div>
+                        <div>
+                            <h3>Javier Moya</h3>
+                            <span class="role-tag">Director del Proyecto</span>
+                        </div>
+                    </div>
+                    <ul style="list-style-position: inside; color: #555;">
+                        <li><strong>Estrategia:</strong> Define el "hacia dónde vamos" y la necesidad territorial.</li>
+                        <li><strong>Política:</strong> Articulación con Alcaldía, Concejo y Medio Ambiente.</li>
+                        <li><strong>Negocio:</strong> Diseño de venta SaaS a otros municipios y levantamiento de fondos (Corfo/Fondart).</li>
+                        <li><strong>Comunidad:</strong> Vinculación con Juntas de Vecinos y Escuelas.</li>
+                    </ul>
+                </div>
+
+                <!-- Javier Ferrand -->
+                <div class="team-card bg-white">
+                    <div class="team-header">
+                        <div class="avatar" style="background: var(--primary);">JF</div>
+                        <div>
+                            <h3>Javier Ferrand</h3>
+                            <span class="role-tag" style="color: var(--primary);">Director Técnico (TPO)</span>
+                        </div>
+                    </div>
+                    <ul style="list-style-position: inside; color: #555;">
+                        <li><strong>Técnica:</strong> Arquitectura de ingeniería y stack (FlutterFlow/Firebase).</li>
+                        <li><strong>Despliegue:</strong> Gestión de App Stores (Apple/Google) y servidores.</li>
+                        <li><strong>UX/UI:</strong> Diseño de interfaces y dirección de arte audiovisual.</li>
+                        <li><strong>Factibilidad:</strong> Responsable del presupuesto técnico.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOCKUP Y SOLUCIÓN TÉCNICA -->
+    <section class="tech-showcase">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">3. ECOSISTEMA TECNOLÓGICO</h2>
+                <p style="color: #aaa;">Visitante (App) + Municipio (Plataforma)</p>
+            </div>
+
+            <!-- MOBILE APP SHOWCASE -->
+            <h3 class="text-center mb-4" style="color:var(--secondary)">EXPERIENCIA VISITANTE (APP)</h3>
+            <div class="mockup-grid">
+                
+                <!-- PHONE 1: AR & ESPECIES -->
+                <div class="phone-frame">
+                    <div class="notch"></div>
+                    <div class="ar-camera-view">
+                        <!-- Simulated Camera UI -->
+                        <div style="padding: 40px 20px; display:flex; justify-content:space-between; color:white;">
+                            <span>AR Mode: ON</span>
+                            <span>📡 GPS: OK</span>
+                        </div>
+                        
+                        <!-- The Coipo (3D Model representation) -->
+                        <div class="ar-animal-model">🦦</div>
+                        
+                        <!-- Target Reticle -->
+                        <div class="ar-reticle"></div>
+
+                        <!-- Info Card -->
+                        <div class="ar-info-card">
+                            <h4 style="color:var(--primary); margin:0;">Coipo (Myocastor coypus)</h4>
+                            <p style="font-size:0.75rem; color:#666; margin-bottom:5px;">Especie Nativa • Herbívoro</p>
+                            <div style="height:4px; background:#eee; border-radius:2px; overflow:hidden;">
+                                <div style="width:100%; height:100%; background:linear-gradient(90deg, transparent, var(--secondary), transparent); animation: load 1s infinite;"></div>
+                            </div>
+                            <p style="font-size:0.6rem; color:var(--secondary); text-align:right; margin-top:5px;">CAPTURA COMPLETADA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHONE 2: GAMIFICACIÓN -->
+                <div class="phone-frame">
+                    <div class="notch"></div>
+                    <div style="height:100%; background:#f8fafc; display:flex; flex-direction:column;">
+                        <div class="passport-header">
+                            <span class="ui-tag">Perfil de Explorador</span>
+                            <div class="user-level">🧑‍🌾</div>
+                            <h3 style="margin:0;">Javier F.</h3>
+                            <p style="font-size:0.8rem; opacity:0.8;">Nivel 5: Guardián del Agua</p>
+                        </div>
+                        <div style="padding:20px;">
+                            <h4 style="font-size:0.9rem; margin-bottom:10px;">Medallas del Humedal</h4>
+                            <div class="badges-grid">
+                                <div class="badge-item unlocked">🦦</div>
+                                <div class="badge-item unlocked">🦆</div>
+                                <div class="badge-item unlocked">📸</div>
+                                <div class="badge-item">🚲</div>
+                                <div class="badge-item">♻️</div>
+                                <div class="badge-item">🌿</div>
+                            </div>
+                            <div style="background:white; padding:15px; border-radius:10px; margin-top:10px; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
+                                    <span>Próximo Nivel</span>
+                                    <strong>80%</strong>
+                                </div>
+                                <div style="height:8px; background:#eee; border-radius:4px;">
+                                    <div style="width:80%; height:100%; background:var(--accent); border-radius:4px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHONE 3: 360 VIDEO & ACCESSIBILITY -->
+                <div class="phone-frame">
+                    <div class="notch"></div>
+                    <div style="height: 100%; background: #000; color: white;">
+                         <div class="video-360-view">
+                             <div class="video-overlay">
+                                 <div style="display:flex; justify-content:space-between; align-items:center;">
+                                     <span class="ui-tag" style="background:rgba(0,0,0,0.5); padding:2px 8px; border-radius:4px;">Vista 360°</span>
+                                     <span>❌</span>
+                                 </div>
+                                 <div class="text-center">
+                                     <div class="gyro-icon">🔄</div>
+                                     <p style="font-size:0.8rem; margin-top:10px;">Modo Inmersivo</p>
+                                 </div>
+                                 <div>
+                                     <h3 style="margin-bottom:10px;">Mirador Central</h3>
+                                     <div class="audio-player">
+                                         <span>▶️</span>
+                                         <div style="flex:1;">
+                                             <div style="font-size:0.7rem;">Audio Guía</div>
+                                             <div style="font-size:0.6rem; opacity:0.7;">02:14 / 05:00</div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESKTOP DASHBOARD SHOWCASE -->
+            <h3 class="text-center mb-4" style="color:var(--accent); margin-top: 60px;">INTELIGENCIA TERRITORIAL (MUNICIPIO)</h3>
+            <div class="dashboard-container">
+                <div class="laptop-frame">
+                    <div class="laptop-screen">
+                        <div class="dashboard-layout">
+                            <!-- Sidebar -->
+                            <div class="sidebar">
+                                <h4 style="color:white; margin-bottom:30px;">MU Admin</h4>
+                                <div style="margin-bottom:10px; color:white;">📊 Dashboard</div>
+                                <div style="margin-bottom:10px;">👥 Usuarios</div>
+                                <div style="margin-bottom:10px;">🚨 Denuncias <span style="background:red; color:white; padding:0 5px; font-size:0.7rem; border-radius:10px;">3</span></div>
+                                <div style="margin-bottom:10px; color:var(--accent);">🔥 Mapas de Calor</div>
+                            </div>
+                            <!-- Main Content -->
+                            <div class="main-content">
+                                <div class="dash-header">
+                                    <h2 style="color:#333; font-size:1.5rem;">Mapa de Calor: Visitantes</h2>
+                                    <button style="background:var(--primary); color:white; border:none; padding:5px 15px; border-radius:4px;">Exportar PDF</button>
+                                </div>
+                                <div style="display:flex; gap:20px; margin-bottom:20px;">
+                                    <div class="dash-card" style="flex:1; text-align:center;">
+                                        <div style="font-size:1.5rem; font-weight:bold; color:var(--primary);">1,240</div>
+                                        <div style="font-size:0.8rem; color:#666;">Visitas Mes</div>
+                                    </div>
+                                    <div class="dash-card" style="flex:1; text-align:center;">
+                                        <div style="font-size:1.5rem; font-weight:bold; color:#ef4444;">14:00</div>
+                                        <div style="font-size:0.8rem; color:#666;">Hora Peak</div>
+                                    </div>
+                                    <div class="dash-card" style="flex:1; text-align:center;">
+                                        <div style="font-size:1.5rem; font-weight:bold; color:var(--accent);">45min</div>
+                                        <div style="font-size:0.8rem; color:#666;">Permanencia Prom.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="heatmap-container">
+                                    <!-- Fake Heatmap Blobs -->
+                                    <div class="heat-blob blob-green"></div>
+                                    <div class="heat-blob blob-yellow"></div>
+                                    <div class="heat-blob blob-red"></div>
+                                    
+                                    <!-- UI Overlay -->
+                                    <div class="floating-stat">
+                                        ⚠️ Sobrecarga: Sendero Norte
+                                        <br><span style="font-weight:normal; font-size:0.7rem; color:#666;">Alta erosión detectada</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="laptop-base"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FUNCIONALIDADES -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>4. FUNCIONALIDADES DE VALOR</h2>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <h3 class="text-primary">Para el Municipio (Gestión)</h3>
+                    <ul style="margin-top: 20px; line-height: 2;">
+                        <li>📊 <strong>Mapa de Calor:</strong> Visualización de zonas transitadas y tiempos.</li>
+                        <li>🚨 <strong>Gestor de Denuncias:</strong> Bandeja georreferenciada (incendios, basura) con evidencia.</li>
+                        <li>📈 <strong>Data para Planes de Gestión:</strong> Registros de avistamiento validados para informes al Ministerio.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-secondary">Para el Visitante (Educación)</h3>
+                    <ul style="margin-top: 20px; line-height: 2;">
+                        <li>📳 <strong>Guía Invisible:</strong> Notificaciones por vibración en puntos de interés.</li>
+                        <li>🏆 <strong>Pasaporte Digital:</strong> Gamificación con insignias ("Guardián del Agua", "Observador").</li>
+                        <li>🎧 <strong>Relatos Inmersivos:</strong> Audio-guías que funcionan sin internet.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESUPUESTO -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>5. PRESUPUESTO DE INVERSIÓN (6 MESES)</h2>
+                <p>Monto Total: <strong>$35.500.000 CLP</strong>. Estrategia de internalización de capacidades.</p>
+            </div>
+
+            <!-- ÍTEM 1 -->
+            <h3 style="margin-bottom: 15px;">ÍTEM 1: EQUIPO NÚCLEO (67%)</h3>
+            <table class="budget-table" style="margin-bottom: 30px;">
+                <thead>
+                    <tr>
+                        <th>Rol / Perfil</th>
+                        <th>Dedicación</th>
+                        <th>Renta Líquida</th>
+                        <th>Costo Total (6 Meses)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Javier Moya</strong> (Director de Proyecto)</td>
+                        <td>Parcial (Media Jornada)</td>
+                        <td>$1.000.000</td>
+                        <td>$6.000.000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Javier Ferrand</strong> (Director Técnico / TPO)</td>
+                        <td>Exclusiva (100%)</td>
+                        <td>$1.500.000</td>
+                        <td>$9.000.000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Desarrollador Full Stack</strong> (FlutterFlow + IA)</td>
+                        <td>Exclusiva (100%)</td>
+                        <td>$1.500.000</td>
+                        <td>$9.000.000</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right;"><strong>SUBTOTAL RR.HH.</strong></td>
+                        <td class="text-primary"><strong>$24.000.000</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ÍTEM 2 -->
+            <h3 style="margin-bottom: 15px;">ÍTEM 2: PRODUCCIÓN TECNOCREATIVA (13%)</h3>
+            <table class="budget-table" style="margin-bottom: 30px;">
+                <thead>
+                    <tr>
+                        <th>Entregable</th>
+                        <th>Detalle Técnico</th>
+                        <th>Costo Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pack Especies AR (3D)</td>
+                        <td>Licencias + Artista 3D (re-texturizado, rigging, animación 5 especies)</td>
+                        <td>$3.000.000</td>
+                    </tr>
+                    <tr>
+                        <td>Producción Sonora</td>
+                        <td>Locución y "Soundscapes" inmersivos</td>
+                        <td>$1.000.000</td>
+                    </tr>
+                    <tr>
+                        <td>Apoyo Gráfico</td>
+                        <td>Vectorización mapas e iconografía</td>
+                        <td>$500.000</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right;"><strong>SUBTOTAL SERVICIOS</strong></td>
+                        <td class="text-primary"><strong>$4.500.000</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ÍTEM 3 -->
+            <h3 style="margin-bottom: 15px;">ÍTEM 3: OPERACIÓN Y DESPLIEGUE (20%)</h3>
+            <table class="budget-table">
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Descripción</th>
+                        <th>Costo Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Infraestructura Física</td>
+                        <td>6 Tótems QR (Madera impregnada + Aluminio)</td>
+                        <td>$2.500.000</td>
+                    </tr>
+                    <tr>
+                        <td>Suscripciones SaaS</td>
+                        <td>FlutterFlow Pro, Mapbox, Firebase, Stores (Anual)</td>
+                        <td>$1.500.000</td>
+                    </tr>
+                    <tr>
+                        <td>Lanzamiento</td>
+                        <td>Activación "BioBlitz" (Logística)</td>
+                        <td>$1.000.000</td>
+                    </tr>
+                    <tr>
+                        <td>Fondo de Reserva</td>
+                        <td>Imprevistos (5.6%)</td>
+                        <td>$2.000.000</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right;"><strong>SUBTOTAL OPERACIÓN</strong></td>
+                        <td class="text-primary"><strong>$7.000.000</strong></td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="2" style="text-align: right;">TOTAL INVERSIÓN</td>
+                        <td>$35.500.000 CLP</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CRONOGRAMA -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>6. CRONOGRAMA ESTACIONAL</h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="content">
+                        <h3 class="text-accent">FASE 1: VERANO</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Enero - Febrero | "Inmersión"</p>
+                        <p><strong>Hito:</strong> Aprovechar clima seco.</p>
+                        <ul style="list-style: none; margin-top: 10px; font-size: 0.9rem;">
+                            <li>✓ Validaciones vecinales (J. Moya)</li>
+                            <li>✓ Fotogrametría y audio (J. Ferrand)</li>
+                            <li>✓ Configuración DB Offline</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="content">
+                        <h3 class="text-primary">FASE 2: OTOÑO</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Marzo - Abril | "La Fábrica"</p>
+                        <p><strong>Hito:</strong> Producción intensiva.</p>
+                        <ul style="list-style: none; margin-top: 10px; font-size: 0.9rem;">
+                            <li>✓ Sincronización diferida</li>
+                            <li>✓ Adaptación 3D (Asset Flipping)</li>
+                            <li>✓ Integración AR</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="content">
+                        <h3 class="text-secondary">FASE 3: INVIERNO</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Mayo - Junio | "Despliegue"</p>
+                        <p><strong>Hito:</strong> Entrega y Venta.</p>
+                        <ul style="list-style: none; margin-top: 10px; font-size: 0.9rem;">
+                            <li>✓ Instalación Tótems QR</li>
+                            <li>✓ Publicación en Stores</li>
+                            <li>✓ Paquetización modelo SaaS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENTREGABLES Y FOOTER -->
+    <section class="section-padding bg-light" style="text-align: center;">
+        <div class="container">
+            <h2 style="color: var(--primary); margin-bottom: 30px;">7. ENTREGABLES FINALES</h2>
+            <div class="grid-3" style="margin-bottom: 20px;">
+                <div style="background: white; padding: 20px; border-radius: 8px;">📱 Plataforma "MU" Operativa (Offline)</div>
+                <div style="background: white; padding: 20px; border-radius: 8px;">🦕 Módulo AR (5 Especies)</div>
+                <div style="background: white; padding: 20px; border-radius: 8px;">💻 CMS Municipal (Gestión)</div>
+            </div>
+            <div class="grid-2" style="max-width: 800px; margin: 0 auto;">
+                <div style="background: white; padding: 20px; border-radius: 8px;">📍 Red de Tótems Inteligentes</div>
+                <div style="background: white; padding: 20px; border-radius: 8px;">📦 Kit de Paquetización SaaS</div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: var(--dark); color: white; padding: 40px 0; text-align: center;">
+        <div class="container">
+            <p><strong>ECOSISTEMA DIGITAL MU</strong> | Propuesta Confidencial 2025</p>
+            <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 10px;">Desarrollado para el Humedal Mayaca y replicable a nivel nacional.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
