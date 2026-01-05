@@ -3,479 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MU DIGITAL | Ecosistema Tecnológico Escalable</title>
+    <title>MU | Ecosistema Digital - Propuesta Estratégica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         
-        :root {
-            --emerald-mu: #059669;
-            --slate-mu: #0f172a;
-            --stone-mu: #f8fafc;
-        }
-
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--stone-mu);
-            color: var(--slate-mu);
-            scroll-behavior: smooth;
+            background-color: #f8fafc;
+            color: #0f172a;
         }
 
-        .chart-container {
-            position: relative;
+        .section-container {
             width: 100%;
-            height: 400px;
-            margin: auto;
-        }
-
-        .sidebar-nav {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-right: 1px solid #e2e8f0;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .report-card {
             background: white;
-            border-radius: 1.5rem;
+            border-radius: 1.25rem;
             border: 1px solid #e2e8f0;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        .nav-link {
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
+        @media (min-width: 768px) {
+            .report-card {
+                padding: 3rem;
+            }
         }
 
-        .nav-link.active {
-            border-left-color: var(--emerald-mu);
-            background-color: #f0fdf4;
-            color: var(--emerald-mu);
-            font-weight: 700;
-        }
-
-        .table-data {
+        .chart-wrapper {
+            position: relative;
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 1rem;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
+            height: 300px;
         }
 
-        .table-data th {
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+        }
+
+        th {
             background-color: #f8fafc;
-            padding: 1.25rem;
+            padding: 1rem;
             text-align: left;
             font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
             color: #64748b;
             border-bottom: 2px solid #e2e8f0;
         }
 
-        .table-data td {
-            padding: 1.25rem;
+        td {
+            padding: 1rem;
             border-bottom: 1px solid #f1f5f9;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
         }
 
-        .highlight-box {
-            background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
-            color: white;
-        }
-
-        .prose-text p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            color: #475569;
-        }
-
-        .tech-pill {
-            background: var(--slate-mu);
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 700;
+        .nav-sticky {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid #e2e8f0;
         }
     </style>
-    <!-- Chosen Palette: Technical Nature (Emerald/Slate). High professional standard. -->
+    <!-- Chosen Palette: Emerald Primary, Slate Text, Stone Background. Professional & Clean. -->
     <!-- Application Structure Plan:
-         - A fixed sidebar manages navigation through all 7 detailed chapters.
-         - Full transcription of DOCX content: Vision, Governance, SaaS Model, Investment Tables.
-         - Dedicated section for Simultaneous Activation (Quillota + SF).
-         - Interactive charts for Budget and Effort visualization.
+         1. Top Navigation: Simple anchor links for mobile.
+         2. Full-Width Layout: Content blocks occupy the central spine of the viewport.
+         3. Reordered Content: Intro -> Governance -> Case Study (Moved up) -> Activation -> Technology -> Investment.
+         4. Responsive Tables: Ensuring budget details are readable on mobile.
     -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
-<body class="flex flex-col md:flex-row min-h-screen">
+<body class="antialiased">
 
-    <!-- Sidebar Navigation -->
-    <aside class="hidden lg:flex flex-col w-80 sidebar-nav fixed h-full z-50">
-        <div class="p-8">
-            <div class="mb-10">
-                <h1 class="text-3xl font-black text-emerald-700 tracking-tighter uppercase">MU DIGITAL</h1>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Infraestructura Tecnológica</p>
-            </div>
-            
-            <nav class="space-y-1 overflow-y-auto">
-                <a href="#vision" class="nav-link block p-4 rounded-xl text-sm font-medium">1. Visión y Nodo Cero</a>
-                <a href="#gobernanza" class="nav-link block p-4 rounded-xl text-sm font-medium">2. Gobernanza de Mando Dual</a>
-                <a href="#tecnologia" class="nav-link block p-4 rounded-xl text-sm font-medium">3. Arquitectura y SaaS</a>
-                <a href="#funcionalidades" class="nav-link block p-4 rounded-xl text-sm font-medium">4. Funcionalidades de Valor</a>
-                <a href="#inversion" class="nav-link block p-4 rounded-xl text-sm font-medium">5. Estructura de Inversión</a>
-                <a href="#contexto" class="nav-link block p-4 rounded-xl text-sm font-medium">6. Financiamiento y SBAP</a>
-                <a href="#activacion" class="nav-link block p-4 rounded-xl text-sm font-medium">7. Hito de Activación Territorial</a>
-            </nav>
-        </div>
-        <div class="mt-auto p-8 border-t border-slate-100">
-            <div class="highlight-box p-6 rounded-3xl shadow-xl">
-                <p class="text-[10px] font-bold text-emerald-400 uppercase mb-2">Presupuesto Bloque A</p>
-                <p class="text-3xl font-black">$24.000.000</p>
-                <div class="mt-4 pt-4 border-t border-white/10">
-                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-2 tracking-widest">Core Tech Stack</p>
-                    <p class="text-xs font-bold">FlutterFlow + Firebase</p>
-                </div>
+    <!-- Top Navigation -->
+    <nav class="nav-sticky">
+        <div class="max-w-5xl mx-auto px-4 flex justify-between items-center h-16">
+            <span class="font-black text-emerald-700 text-xl tracking-tighter">MU DIGITAL</span>
+            <div class="hidden md:flex space-x-6">
+                <a href="#vision" class="text-xs font-bold text-slate-500 hover:text-emerald-600 uppercase">Visión</a>
+                <a href="#piloto" class="text-xs font-bold text-slate-500 hover:text-emerald-600 uppercase">Caso Piloto</a>
+                <a href="#inversion" class="text-xs font-bold text-slate-500 hover:text-emerald-600 uppercase">Presupuesto</a>
             </div>
         </div>
-    </aside>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="flex-1 lg:ml-80 p-6 md:p-12 lg:p-20 max-w-7xl">
+    <main class="px-4 py-8 md:py-16">
+        <div class="section-container">
 
-        <!-- 1. RESUMEN EJECUTIVO Y VISIÓN -->
-        <section id="vision" class="report-card scroll-mt-24">
-            <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest mb-4 block">Capítulo 1</span>
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-8 leading-tight">Análisis Estratégico y Técnico del Ecosistema</h2>
-            
-            <div class="prose-text">
-                <p class="text-xl text-slate-600 font-medium italic">
-                    "De la consolidación del piloto MUM Mayaca a una infraestructura tecnológica escalable: Modelo paquetizado para la gestión, educación y visualización de humedales urbanos."
-                </p>
-                <p>
-                    El proyecto “MU” surge como respuesta a una brecha estructural: la desconexión entre la ciudadanía y los humedales urbanos. A partir de la experiencia validada en el <strong>Humedal Mayaca (Quillota)</strong>, definido como <strong>“Nodo Cero”</strong>, esta propuesta no plantea el desarrollo de una aplicación aislada, sino la consolidación de un <strong>Sistema Operativo para Humedales</strong>.
-                </p>
-                <p>
-                    El impacto inicial del Nodo Cero se refleja en su capacidad para transformar la visita al humedal en una experiencia educativa guiada y participativa. La plataforma permite a los usuarios acceder a información sobre las especies locales, hitos arqueológicos y geográficos, además de permitirles contribuir activamente mediante la carga de fotografías de avistamientos ("ciencia ciudadana").
-                </p>
-                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 my-8">
-                    <h4 class="font-bold text-slate-900 mb-4">Hitos Clave del Lanzamiento (Quillota)</h4>
-                    <ul class="text-sm space-y-3 text-slate-500">
-                        <li>• <strong>9 de octubre de 2024:</strong> Lanzamiento oficial en la "Poza del paradero 8".</li>
-                        <li>• <strong>Articulación:</strong> Colaboración entre AIEP, ONG Mujeres y Ríos Libres y Municipalidad de Quillota.</li>
-                        <li>• <strong>Alcance:</strong> 234,5 hectáreas protegidas bajo Ley de Humedales Urbanos.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. GOBERNANZA DE MANDO DUAL -->
-        <section id="gobernanza" class="report-card scroll-mt-24">
-            <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest mb-4 block">Capítulo 2</span>
-            <h2 class="text-3xl font-bold text-slate-900 mb-6">Gobernanza de Mando Dual</h2>
-            <p class="text-slate-500 mb-12">Modelo que asegura coherencia entre visión institucional, pertinencia territorial, viabilidad técnica y sostenibilidad.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Javier Moya -->
-                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
-                    <h3 class="text-2xl font-bold text-slate-900">Javier Moya</h3>
-                    <p class="text-xs font-bold text-emerald-600 uppercase tracking-widest mb-4">Director del Proyecto</p>
-                    <p class="text-sm text-slate-600 mb-6 font-medium">Responsable de la conducción estratégica, territorial e institucional.</p>
-                    <ul class="space-y-4 text-xs text-slate-500">
-                        <li>• <strong>Estrategia:</strong> Define visión, objetivos de continuidad y pertinencia territorial.</li>
-                        <li>• <strong>Articulación:</strong> Vinculación con municipios, alcaldías y áreas de medio ambiente.</li>
-                        <li>• <strong>Sostenibilidad:</strong> Modelo de escalabilidad y levantamiento de financiamiento.</li>
-                    </ul>
-                </div>
-
-                <!-- Javier Ferrand -->
-                <div class="p-8 bg-slate-900 rounded-3xl text-white shadow-xl shadow-slate-200">
-                    <h3 class="text-2xl font-bold">Javier Ferrand</h3>
-                    <p class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-4">Director Técnico (TPO)</p>
-                    <p class="text-sm text-slate-300 mb-6 font-medium">Responsable de la arquitectura tecnológica, ejecución técnica y factibilidad operativa.</p>
-                    <ul class="space-y-4 text-xs text-slate-400">
-                        <li>• <strong>Arquitectura:</strong> Stack basado en <strong>FlutterFlow + Firebase</strong>.</li>
-                        <li>• <strong>Despliegue:</strong> Gestión de infraestructura Cloud y App Stores.</li>
-                        <li>• <strong>Factibilidad:</strong> Control presupuestario y eficiencia en la escalabilidad.</li>
-                        <li>• <strong>Experiencia:</strong> Dirección UX/UI y narrativa audiovisual del ecosistema.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. TECNOLOGÍA -->
-        <section id="tecnologia" class="report-card scroll-mt-24">
-            <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest mb-4 block">Capítulo 3</span>
-            <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Arquitectura y Sistema Operativo para Humedales</h2>
-            
-            <div class="prose-text mb-12">
-                <p>
-                    La infraestructura base se concibe como un núcleo habilitante. El uso de <strong>FlutterFlow</strong> para interfaces y <strong>Firebase</strong> para gestión de datos permite una arquitectura robusta capaz de manejar lógicas de georreferenciación y participación.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-10">
-                    <div class="p-6 bg-slate-100 rounded-2xl flex items-center justify-between">
-                        <span class="font-bold text-sm">Framework: FlutterFlow</span>
-                        <span class="tech-pill">Desarrollo UI</span>
-                    </div>
-                    <div class="p-6 bg-slate-100 rounded-2xl flex items-center justify-between">
-                        <span class="font-bold text-sm">Base: Firebase</span>
-                        <span class="tech-pill">Backend & Auth</span>
-                    </div>
-                </div>
-                <p>
-                    Se contempla una lógica <strong>"offline-first"</strong> para entornos naturales y un modelo <strong>multi-humedal</strong> que permite alojar múltiples instancias municipales bajo un estándar técnico único.
-                </p>
-            </div>
-        </section>
-
-        <!-- 4. FUNCIONALIDADES -->
-        <section id="funcionalidades" class="report-card scroll-mt-24">
-            <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest mb-4 block">Capítulo 4</span>
-            <h2 class="text-3xl font-bold text-slate-900 mb-10">Funcionalidades de Valor</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="space-y-8">
-                    <h4 class="text-emerald-700 font-bold text-sm uppercase tracking-widest italic">Visitante y Comunidad</h4>
-                    <div class="flex gap-4 p-4 bg-slate-50 rounded-2xl">
-                        <div class="text-2xl">📍</div>
-                        <div>
-                            <h5 class="font-bold text-sm">Rutas Guiadas</h5>
-                            <p class="text-xs text-slate-500">Navegación georreferenciada con hitos de biodiversidad.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 p-4 bg-slate-50 rounded-2xl">
-                        <div class="text-2xl">📸</div>
-                        <div>
-                            <h5 class="font-bold text-sm">Ciencia Ciudadana</h5>
-                            <p class="text-xs text-slate-500">Carga de registros de avistamientos para participación activa.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="space-y-8">
-                    <h4 class="text-slate-700 font-bold text-sm uppercase tracking-widest italic">Inteligencia Territorial</h4>
-                    <div class="flex gap-4 p-4 bg-slate-50 rounded-2xl">
-                        <div class="text-2xl">📊</div>
-                        <div>
-                            <h5 class="font-bold text-sm">Data de Uso</h5>
-                            <p class="text-xs text-slate-500">Monitoreo de visitas y zonas de mayor interacción social.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 p-4 bg-slate-50 rounded-2xl">
-                        <div class="text-2xl">⚠️</div>
-                        <div>
-                            <h5 class="font-bold text-sm">Gestión de Alertas</h5>
-                            <p class="text-xs text-slate-500">Identificación temprana de amenazas (basura, áridos).</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. ESTRUCTURA DE INVERSIÓN -->
-        <section id="inversion" class="report-card scroll-mt-24">
-            <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest mb-4 block">Capítulo 5</span>
-            <h2 class="text-3xl font-bold text-slate-900 mb-4">Estructura de Inversión y Escalamiento</h2>
-            <p class="text-slate-500 mb-12">Consolidación del ecosistema a 6 meses con enfoque en internalización de capacidades críticas.</p>
-
-            <!-- Bloque A -->
-            <div class="mb-16">
-                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-6 gap-4">
-                    <div>
-                        <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-[10px] font-black uppercase">Bloque A: Infraestructura Base</span>
-                        <h3 class="text-2xl font-bold mt-2">Equipo Núcleo e Infraestructura</h3>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-4xl font-black text-slate-900">$24.000.000</p>
-                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Inversión 6 Meses</p>
-                    </div>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="table-data">
-                        <thead>
-                            <tr>
-                                <th>Componente / Rol</th>
-                                <th>Dedicación</th>
-                                <th>Tipo de Gasto</th>
-                                <th class="text-right">Costo (6m)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="font-bold">Dirección del Proyecto (Javier Moya)</td>
-                                <td>Parcial (Media Jornada)</td>
-                                <td>Capacidad Crítica</td>
-                                <td class="text-right font-black">$6.000.000</td>
-                            </tr>
-                            <tr>
-                                <td class="font-bold">Dirección Técnica / TPO (Javier Ferrand)</td>
-                                <td>Completa (100%)</td>
-                                <td>Capacidad Crítica</td>
-                                <td class="text-right font-black">$9.000.000</td>
-                            </tr>
-                            <tr>
-                                <td class="font-bold">Desarrollo Full Stack</td>
-                                <td>Completa (100%)</td>
-                                <td>Capacidad Crítica</td>
-                                <td class="text-right font-black">$9.000.000</td>
-                            </tr>
-                            <tr class="bg-slate-50 italic text-slate-500">
-                                <td>Arquitectura Base (Backend CMS)</td>
-                                <td>Permanente</td>
-                                <td>Infraestructura</td>
-                                <td class="text-right font-bold text-slate-900 underline decoration-emerald-500 decoration-2">Resultado Bloque A</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mt-6 p-8 bg-slate-900 text-white rounded-3xl">
-                    <p class="text-sm leading-relaxed">
-                        <strong class="text-emerald-400">Análisis:</strong> El Bloque A no es un gasto operativo repetible, sino la inversión en la "maquinaria" tecnológica. Internalizar a Ferrand y Moya garantiza que el <strong>Ecosistema MU</strong> sea un activo propio capaz de escalar sin depender de externos.
+            <!-- 1. RESUMEN EJECUTIVO Y VISIÓN -->
+            <section id="vision" class="report-card">
+                <span class="text-emerald-600 font-bold text-[10px] uppercase tracking-widest mb-2 block">Capítulo 1</span>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">Análisis Estratégico y Técnico del Ecosistema</h1>
+                <div class="space-y-4 text-slate-600 leading-relaxed">
+                    <p class="text-lg md:text-xl font-medium italic">
+                        "De la consolidación del piloto MUM Mayaca a una infraestructura tecnológica escalable: Modelo paquetizado para la gestión, educación y visualización de humedales urbanos."
                     </p>
-                </div>
-            </div>
-
-            <!-- Bloque B -->
-            <div class="mb-16">
-                <div class="flex justify-between items-end mb-6">
-                    <div>
-                        <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-[10px] font-black uppercase">Bloque B: Replicable</span>
-                        <h3 class="text-2xl font-bold mt-2">Modelo de Integración por Humedal</h3>
+                    <p>
+                        El proyecto “MU” surge como respuesta a una brecha estructural: la desconexión entre la ciudadanía y los humedales urbanos. A partir de la experiencia validada en el <strong>Humedal Mayaca (Quillota)</strong>, definido como <strong>“Nodo Cero”</strong>, esta propuesta no plantea el desarrollo de una aplicación aislada, sino la consolidación de un <strong>Sistema Operativo para Humedales</strong>.
+                    </p>
+                    <p>
+                        El impacto inicial del Nodo Cero se refleja en su capacidad para transformar la visita al humedal en una experiencia educativa guiada y participativa. La plataforma permite a los usuarios acceder a información sobre las especies locales, hitos arqueológicos y geográficos, además de permitirles contribuir activamente mediante la carga de fotografías de avistamientos ("ciencia ciudadana").
+                    </p>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 my-6">
+                        <h4 class="font-bold text-slate-900 mb-2">Hitos Clave del Lanzamiento (Quillota)</h4>
+                        <ul class="text-sm space-y-2 text-slate-500">
+                            <li>• <strong>9 de octubre de 2024:</strong> Lanzamiento oficial en la "Poza del paradero 8".</li>
+                            <li>• <strong>Articulación:</strong> Colaboración entre AIEP, ONG Mujeres y Ríos Libres y Municipalidad de Quillota.</li>
+                            <li>• <strong>Alcance:</strong> 234,5 hectáreas protegidas bajo Ley de Humedales Urbanos.</li>
+                        </ul>
                     </div>
-                    <div class="text-right">
+                </div>
+            </section>
+
+            <!-- 2. GOBERNANZA DEL PROYECTO (MANDO DUAL) -->
+            <section id="gobernanza" class="report-card">
+                <span class="text-emerald-600 font-bold text-[10px] uppercase tracking-widest mb-2 block">Capítulo 2</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">Gobernanza de Mando Dual</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                        <h3 class="text-xl font-bold text-slate-900">Javier Moya</h3>
+                        <p class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mb-4">Director del Proyecto</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Responsable de la conducción estratégica, territorial e institucional. Define la visión y pertinencia territorial de la solución.</p>
+                    </div>
+                    <div class="p-6 bg-slate-900 rounded-2xl text-white">
+                        <h3 class="text-xl font-bold">Javier Ferrand</h3>
+                        <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-4">Director Técnico (TPO)</p>
+                        <p class="text-sm text-slate-300 leading-relaxed">Responsable de la arquitectura técnica (FlutterFlow + Firebase), gestión operativa y eficiencia en la escalabilidad del sistema.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. CASO PILOTO Y VALIDACIÓN (SUBIDO DE POSICIÓN) -->
+            <section id="piloto" class="report-card">
+                <span class="text-emerald-600 font-bold text-[10px] uppercase tracking-widest mb-2 block">Capítulo 3</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">Caso Piloto: Quillota + San Fernando</h2>
+                <div class="space-y-6 text-slate-600 leading-relaxed">
+                    <p>
+                        Para demostrar la replicabilidad real del sistema, el proyecto MU contempla la integración de los humedales de <strong>Quillota (Mayaca)</strong> y <strong>San Fernando</strong> bajo un mismo estándar técnico y metodológico.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white border border-slate-200 p-6 rounded-2xl">
+                            <h4 class="font-bold text-slate-900 mb-2">Caso San Fernando</h4>
+                            <p class="text-xs">La ciudadanía prioriza la fiscalización y educación ambiental (42,58% de respaldo en encuestas). La integración valida la replicabilidad en territorios distintos.</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 p-6 rounded-2xl">
+                            <h4 class="font-bold text-slate-900 mb-2">Caso Quillota</h4>
+                            <p class="text-xs">Modelo basado en el "buen vivir". Fortalecimiento de la relación comunitaria con un presupuesto municipal proyectado de +34 mil millones para 2026.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. HITO DE ACTIVACIÓN TERRITORIAL -->
+            <section id="activacion" class="report-card bg-emerald-900 text-white">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-emerald-400">Hito de Activación Simultánea</h2>
+                <div class="space-y-6">
+                    <p class="text-emerald-100/80">
+                        Activación en paralelo para fortalecer la integración comunitaria y validar el Ecosistema Digital MU en condiciones reales de terreno.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="space-y-2">
+                            <div class="text-2xl">🏫</div>
+                            <h4 class="font-bold text-sm">Encuentro Abierto</h4>
+                            <p class="text-[11px] text-emerald-100/60">Comunidad y educación para la puesta en valor del patrimonio vivo.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-2xl">📱</div>
+                            <h4 class="font-bold text-sm">Interacción MU</h4>
+                            <p class="text-[11px] text-emerald-100/60">Uso de rutas guiadas y herramientas de participación ciudadana.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="text-2xl">🏆</div>
+                            <h4 class="font-bold text-sm">Mejor Avistamiento</h4>
+                            <p class="text-[11px] text-emerald-100/60">Concurso con votación popular interna dentro de la App.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. ARQUITECTURA TECNOLÓGICA -->
+            <section id="tecnologia" class="report-card">
+                <span class="text-emerald-600 font-bold text-[10px] uppercase tracking-widest mb-2 block">Capítulo 5</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">Arquitectura de Sistema Operativo</h2>
+                <div class="space-y-6">
+                    <p class="text-slate-600 leading-relaxed">
+                        Infraestructura base común alojada bajo un estándar técnico unificado para múltiples instancias municipales.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold">FlutterFlow (UI/UX)</span>
+                        <span class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold">Firebase (Backend/Data)</span>
+                        <span class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold">Lógica Offline-first</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <h4 class="font-bold text-sm mb-2 text-emerald-700 italic">Funcionalidades Visitante</h4>
+                            <ul class="text-xs space-y-1 text-slate-500">
+                                <li>• Rutas guiadas georreferenciadas.</li>
+                                <li>• Ciencia ciudadana (carga avistamientos).</li>
+                                <li>• Educación multimedia interactiva.</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <h4 class="font-bold text-sm mb-2 text-slate-700 italic">Inteligencia Territorial</h4>
+                            <ul class="text-xs space-y-1 text-slate-500">
+                                <li>• Monitoreo y analítica para stakeholders.</li>
+                                <li>• Gestión ciudadana de alertas.</li>
+                                <li>• Visualización estratégica de datos.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. ESTRUCTURA DE INVERSIÓN (TABLAS) -->
+            <section id="inversion" class="report-card">
+                <span class="text-emerald-600 font-bold text-[10px] uppercase tracking-widest mb-2 block">Capítulo 6</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">Estructura de Inversión</h2>
+                
+                <!-- BLOQUE A -->
+                <div class="mb-12">
+                    <div class="flex justify-between items-end mb-4 border-b pb-2">
+                        <h3 class="text-xl font-bold text-slate-800">Bloque A: Infraestructura Base</h3>
+                        <p class="text-2xl font-black text-slate-900">$24.000.000</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Componente / Rol</th>
+                                    <th>Dedicación</th>
+                                    <th class="text-right">Inversión CLP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Dirección del Proyecto (Javier Moya)</td><td>Media Jornada</td><td class="text-right font-bold">$6.000.000</td></tr>
+                                <tr><td>Dirección Técnica / TPO (Javier Ferrand)</td><td>Completa (100%)</td><td class="text-right font-bold">$9.000.000</td></tr>
+                                <tr><td>Desarrollo Full Stack</td><td>Completa (100%)</td><td class="text-right font-bold">$9.000.000</td></tr>
+                                <tr class="bg-slate-50 font-medium italic"><td>Arquitectura Base (Backend CMS)</td><td>Permanente</td><td class="text-right text-emerald-600">Entregable Bloque A</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- BLOQUE B -->
+                <div class="mb-12">
+                    <div class="flex justify-between items-end mb-4 border-b pb-2">
+                        <h3 class="text-xl font-bold text-slate-800">Bloque B: Integración Estándar</h3>
                         <p class="text-2xl font-black text-slate-900">$6.000.000</p>
-                        <p class="text-[9px] font-bold text-slate-400 uppercase italic">Costo por Nodo</p>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Etapa de Integración</th>
+                                    <th>Alcance</th>
+                                    <th class="text-right">Inversión CLP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Diagnóstico Territorial</td><td>Levantamiento base e hitos</td><td class="text-right font-bold">$1.200.000</td></tr>
+                                <tr><td>Registro en Terreno</td><td>Foto, audio y georreferencia</td><td class="text-right font-bold">$1.800.000</td></tr>
+                                <tr><td>Configuración Nodo</td><td>Alta técnica en plataforma</td><td class="text-right font-bold">$1.000.000</td></tr>
+                                <tr><td>Carga de Contenidos</td><td>Rutas y experiencias</td><td class="text-right font-bold">$1.000.000</td></tr>
+                                <tr><td>Vinculación Local</td><td>Coordinación stakeholders</td><td class="text-right font-bold">$1.000.000</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <table class="table-data">
-                    <thead>
-                        <tr>
-                            <th>Etapa</th>
-                            <th>Alcance Principal</th>
-                            <th class="text-right">Inversión CLP</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Diagnóstico Territorial</td><td>Levantamiento base e hitos</td><td class="text-right font-bold">$1.200.000</td></tr>
-                        <tr><td>Registro en Terreno</td><td>Foto, audio y georreferencia</td><td class="text-right font-bold">$1.800.000</td></tr>
-                        <tr><td>Configuración Nodo</td><td>Alta técnica en arquitectura SaaS</td><td class="text-right font-bold">$1.000.000</td></tr>
-                        <tr><td>Carga de Contenidos</td><td>Rutas y experiencias multimedia</td><td class="text-right font-bold">$1.000.000</td></tr>
-                        <tr><td>Vinculación Local</td><td>Coordinación con comunidad</td><td class="text-right font-bold">$1.000.000</td></tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <!-- Bloque C -->
-            <div class="mb-16">
-                <div class="flex justify-between items-end mb-6">
-                    <div>
-                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-[10px] font-black uppercase">Bloque C: Validación</span>
-                        <h3 class="text-2xl font-bold mt-2">Caso Piloto Quillota + San Fernando</h3>
-                    </div>
-                    <div class="text-right">
+                <!-- BLOQUE C -->
+                <div class="mb-12">
+                    <div class="flex justify-between items-end mb-4 border-b pb-2">
+                        <h3 class="text-xl font-bold text-slate-800">Bloque C: Validación Pilotos</h3>
                         <p class="text-2xl font-black text-slate-900">$4.500.000</p>
                     </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm text-center">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-2">Producción Audiovisual (SF)</p>
-                        <p class="text-xl font-black">$2.000.000</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 text-center">
+                        <div class="p-4 bg-slate-50 rounded-xl">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase">Audiovisual</p>
+                            <p class="font-bold text-lg">$2.000.000</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase">Suscripciones</p>
+                            <p class="font-bold text-lg">$1.500.000</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase">Lanzamiento</p>
+                            <p class="font-bold text-lg">$1.000.000</p>
+                        </div>
                     </div>
-                    <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm text-center">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-2">Suscripciones SaaS (Anual)</p>
-                        <p class="text-xl font-black">$1.500.000</p>
+                </div>
+
+                <div class="chart-wrapper mt-10">
+                    <canvas id="investmentChart"></canvas>
+                </div>
+            </section>
+
+            <!-- 7. FINANCIAMIENTO Y SBAP -->
+            <section id="contexto" class="report-card">
+                <span class="text-emerald-600 font-bold text-[10px] uppercase tracking-widest mb-2 block">Capítulo 7</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-8 text-center">Financiamiento Público y Sostenibilidad</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                    <div class="p-6 bg-white border rounded-2xl">
+                        <h4 class="font-bold text-emerald-700 mb-2">CORFO: Innova Región</h4>
+                        <p class="text-[11px] text-slate-500 mb-4 leading-relaxed">Foco en sostenibilidad hídrica. Financiamiento de hasta $60M para proyectos con madurez técnica validada (TRL).</p>
+                        <span class="font-black text-slate-900">$60.000.000</span>
                     </div>
-                    <div class="p-6 bg-white border border-slate-100 rounded-3xl shadow-sm text-center">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-2">Hito de Lanzamiento</p>
-                        <p class="text-xl font-black">$1.000.000</p>
+                    <div class="p-6 bg-white border rounded-2xl">
+                        <h4 class="font-bold text-blue-700 mb-2">MMA: Fondo Protección Ambiental</h4>
+                        <p class="text-[11px] text-slate-500 mb-4 leading-relaxed">Convocatorias para fundaciones y universidades aliadas para la puesta en valor de ecosistemas críticos.</p>
+                        <span class="font-black text-slate-900">$70.000.000</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="bg-slate-50 p-10 rounded-[3rem] border border-slate-100">
-                <h4 class="text-center font-bold text-slate-400 uppercase text-[10px] mb-10 tracking-widest">Resumen de Inversión</h4>
-                <div class="chart-container">
-                    <canvas id="budgetChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. FINANCIAMIENTO Y SBAP -->
-        <section id="contexto" class="report-card scroll-mt-24">
-            <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest mb-4 block">Capítulo 6</span>
-            <h2 class="text-3xl font-bold text-slate-900 mb-8">Estrategia de Financiamiento 2025-2026</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div class="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm">
-                    <h4 class="font-bold text-emerald-700 mb-2">CORFO: Innova Región</h4>
-                    <p class="text-xs text-slate-500 mb-4 leading-relaxed">Foco en sostenibilidad y recuperación de ecosistemas. Subsidios de hasta $60M para proyectos con madurez técnica (TRL) validada.</p>
-                    <div class="text-lg font-black text-slate-900">$60.000.000</div>
-                </div>
-                <div class="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm">
-                    <h4 class="font-bold text-blue-700 mb-2">MMA: Fondo Protección Ambiental</h4>
-                    <p class="text-xs text-slate-500 mb-4 leading-relaxed">Convocatorias específicas para la puesta en valor de ecosistemas críticos y humedales.</p>
-                    <div class="text-lg font-black text-slate-900">$70.000.000</div>
-                </div>
-            </div>
-
-            <div class="bg-emerald-900 text-white p-10 rounded-3xl shadow-2xl">
-                <h4 class="font-bold text-emerald-400 mb-4 uppercase text-xs tracking-widest">Horizonte SBAP 2026</h4>
-                <p class="text-sm text-emerald-100 italic leading-relaxed">
-                    La entrada en operación del Servicio de Biodiversidad y Áreas Protegidas (SBAP) en febrero de 2026 marcará un cambio en los estándares de conservación. Proyectos como MU, con infraestructura consolidada y gobernanza probada, tendrán una ventaja competitiva para alinearse con las nuevas exigencias de monitoreo.
-                </p>
-            </div>
-        </section>
-
-        <!-- 7. HITO DE ACTIVACIÓN -->
-        <section id="activacion" class="report-card scroll-mt-24">
-            <span class="text-emerald-600 font-bold text-xs uppercase tracking-widest mb-4 block">Capítulo 7</span>
-            <h2 class="text-3xl font-bold text-slate-900 mb-8 leading-tight">Hito: Activación Territorial Simultánea (Quillota + San Fernando)</h2>
-            
-            <div class="bg-slate-900 text-white rounded-[3rem] p-10 lg:p-20 relative overflow-hidden shadow-2xl">
-                <div class="relative z-10">
-                    <p class="text-lg text-slate-400 mb-12 max-w-3xl leading-relaxed">
-                        Se propone realizar una activación territorial en paralelo para fortalecer la integración comunitaria, visibilizar el patrimonio natural y validar el Ecosistema Digital MU en condiciones reales.
+                <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100 text-center">
+                    <h4 class="font-bold text-emerald-900 mb-2 tracking-widest uppercase text-xs">Horizonte SBAP 2026</h4>
+                    <p class="text-xs text-emerald-800 leading-relaxed italic">
+                        La entrada en operación del Servicio de Biodiversidad y Áreas Protegidas (SBAP) en febrero de 2026 exigirá estándares de monitoreo que el Ecosistema Digital MU ya integra nativamente.
                     </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-white/10 pb-12 mb-12">
-                        <div class="space-y-4">
-                            <div class="text-emerald-500 text-4xl">🏫</div>
-                            <h4 class="text-xl font-bold">Encuentro Abierto</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">Convocatoria con establecimientos educacionales y actores locales para la puesta en valor del humedal como patrimonio natural vivo.</p>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="text-emerald-500 text-4xl">📱</div>
-                            <h4 class="text-xl font-bold">Interacción MU</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">Interacción guiada con la plataforma: uso de rutas georreferenciadas, carga de avistamientos y testeo de herramientas de participación.</p>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="text-emerald-500 text-4xl">🏆</div>
-                            <h4 class="text-xl font-bold">Mejor Avistamiento</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">Concurso de registros (fotografía y/o relato) publicados en la App y seleccionados mediante votación popular interna.</p>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div>
-                            <h5 class="text-emerald-400 font-bold text-xs uppercase mb-4 tracking-widest">Territorio Quillota</h5>
-                            <p class="text-[11px] text-slate-400 leading-relaxed">Consolidación del Nodo Cero. Modelo de gestión basado en el "buen vivir". Presupuesto 2026 aprobado para fortalecer la relación comunitaria con el medio ambiente.</p>
-                        </div>
-                        <div>
-                            <h5 class="text-emerald-400 font-bold text-xs uppercase mb-4 tracking-widest">Territorio San Fernando</h5>
-                            <p class="text-[11px] text-slate-400 leading-relaxed">Demostración de replicabilidad real. La ciudadanía prioriza la fiscalización y educación ambiental (42,58% de respaldo en encuestas ciudadanas 2025).</p>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
+        </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="lg:ml-80 bg-white border-t border-slate-200 py-20 text-center">
-        <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mb-4">Ecosistema Digital MU 2025</p>
+    <footer class="bg-white border-t border-slate-200 py-16 text-center">
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Ecosistema Digital MU 2025</p>
         <p class="text-xs text-slate-500 mb-8">Propuesta desarrollada por Javier Moya y Javier Ferrand.</p>
         <div class="flex justify-center gap-6 text-[9px] font-bold text-slate-300 uppercase tracking-widest">
             <span>90 Días de Vigencia</span>
@@ -485,9 +352,8 @@
     </footer>
 
     <script>
-        // Chart Initialization
         function initCharts() {
-            const ctx = document.getElementById('budgetChart').getContext('2d');
+            const ctx = document.getElementById('investmentChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -496,8 +362,8 @@
                         label: 'Inversión CLP',
                         data: [24000000, 6000000, 4500000],
                         backgroundColor: ['#059669', '#64748b', '#6366f1'],
-                        borderRadius: 15,
-                        barThickness: 50
+                        borderRadius: 12,
+                        barThickness: 40
                     }]
                 },
                 options: {
@@ -514,28 +380,6 @@
                 }
             });
         }
-
-        // Sidebar link highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = "";
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
         window.onload = initCharts;
     </script>
 </body>
