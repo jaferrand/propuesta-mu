@@ -24,9 +24,12 @@
         }
         .image-placeholder:hover { border-color: #10b981; background: #f0fdf4; }
         
-        /* Estilos para la nueva línea de tiempo */
+        /* Estilos para la línea de tiempo (roadmap) */
         .roadmap-line { position: absolute; left: 50%; transform: translateX(-50%); height: 100%; width: 2px; background-color: #e2e8f0; z-index: 0; }
         .roadmap-card { z-index: 10; position: relative; }
+        
+        /* Estilo para números gigantes en el hito */
+        .big-number { font-size: 4rem; line-height: 1; font-weight: 800; opacity: 0.1; position: absolute; top: 1rem; left: 1rem; }
     </style>
 </head>
 <body class="bg-white text-slate-900">
@@ -327,27 +330,78 @@
         </div>
     </section>
 
-    <section id="hito" class="py-24 bg-emerald-700 text-white">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-8 uppercase tracking-tight">Hito: Activación Territorial Simultánea</h2>
-            <p class="text-emerald-100 mb-12 text-justify text-center md:text-center">Fortalecimiento de la integración comunitaria y validación del estándar técnico en dos territorios distintos (Quillota y San Fernando).</p>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="p-6 bg-white/10 rounded-2xl border border-white/20">
-                    <i data-lucide="mic-2" class="mx-auto mb-4 text-emerald-300"></i>
-                    <p class="text-xs font-bold uppercase mb-2">Puesta en Valor</p>
-                    <p class="text-[10px] text-emerald-100">Patrimonio natural vivo.</p>
+    <section id="hito-final" class="py-24 bg-emerald-700 text-white overflow-hidden relative">
+        <div class="max-w-5xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 uppercase tracking-tight">Hito: Activación Territorial Simultánea</h2>
+                <p class="text-emerald-100 text-lg leading-relaxed text-justify md:text-center max-w-4xl mx-auto">
+                    Se propone realizar una activación territorial en paralelo en los humedales de Quillota (Mayaca) y San Fernando, con el objetivo de fortalecer la integración comunitaria, visibilizar el patrimonio natural y validar el uso del Ecosistema Digital MU en terreno.
+                </p>
+            </div>
+
+            <h3 class="text-xl font-bold mb-10 text-center uppercase tracking-wider text-emerald-200">La activación contempla:</h3>
+            <div class="grid md:grid-cols-3 gap-8 mb-24">
+                <div class="p-8 bg-white/10 rounded-3xl border border-white/20 relative overflow-hidden group hover:bg-white/15 transition-all">
+                    <div class="big-number">1</div>
+                    <div class="relative z-10">
+                        <i data-lucide="users" class="mb-6 text-emerald-300 w-10 h-10"></i>
+                        <h4 class="text-xl font-bold mb-4">Encuentro Abierto</h4>
+                        <p class="text-sm text-emerald-100 leading-relaxed text-justify">Encuentro abierto con comunidad, establecimientos educacionales y actores locales, orientado a la puesta en valor del humedal como patrimonio natural vivo.</p>
+                    </div>
                 </div>
-                <div class="p-6 bg-white/10 rounded-2xl border border-white/20">
-                    <i data-lucide="map-pin" class="mx-auto mb-4 text-emerald-300"></i>
-                    <p class="text-xs font-bold uppercase mb-2">Interacción</p>
-                    <p class="text-[10px] text-emerald-100">Uso guiado de la plataforma.</p>
+                <div class="p-8 bg-white/10 rounded-3xl border border-white/20 relative overflow-hidden group hover:bg-white/15 transition-all">
+                    <div class="big-number">2</div>
+                    <div class="relative z-10">
+                        <i data-lucide="smartphone-nfc" class="mb-6 text-emerald-300 w-10 h-10"></i>
+                        <h4 class="text-xl font-bold mb-4">Interacción Guiada</h4>
+                        <p class="text-sm text-emerald-100 leading-relaxed text-justify">Interacción guiada con la plataforma MU, promoviendo el uso de rutas, puntos de interés y herramientas de participación.</p>
+                    </div>
                 </div>
-                <div class="p-6 bg-white/10 rounded-2xl border border-white/20">
-                    <i data-lucide="star" class="mx-auto mb-4 text-emerald-300"></i>
-                    <p class="text-xs font-bold uppercase mb-2">Concurso</p>
-                    <p class="text-[10px] text-emerald-100">Mejor avistamiento popular.</p>
+                <div class="p-8 bg-white/10 rounded-3xl border border-white/20 relative overflow-hidden group hover:bg-white/15 transition-all">
+                    <div class="big-number">3</div>
+                    <div class="relative z-10">
+                        <i data-lucide="camera" class="mb-6 text-emerald-300 w-10 h-10"></i>
+                        <h4 class="text-xl font-bold mb-4">Participación Ciudadana</h4>
+                        <p class="text-sm text-emerald-100 leading-relaxed text-justify">Dinámica de participación a través de un concurso de “mejor avistamiento”, donde los registros son publicados y seleccionados mediante votación popular.</p>
+                    </div>
                 </div>
             </div>
+
+            <div class="bg-emerald-800/60 p-10 rounded-[2rem] border border-emerald-500/50 shadow-lg backdrop-blur-sm">
+                <h3 class="text-2xl font-bold mb-8 uppercase tracking-wider text-center text-emerald-200">Resultados Esperados</h3>
+                
+                <div class="grid md:grid-cols-2 gap-y-6 gap-x-12 mb-10">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check" class="text-emerald-300 w-5 h-5"></i>
+                        </div>
+                        <p class="text-lg text-emerald-50 font-medium">Generación de contenidos iniciales de alta calidad.</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check" class="text-emerald-300 w-5 h-5"></i>
+                        </div>
+                        <p class="text-lg text-emerald-50 font-medium">Incremento de adopción y engagement.</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check" class="text-emerald-300 w-5 h-5"></i>
+                        </div>
+                        <p class="text-lg text-emerald-50 font-medium">Validación del estándar técnico-comunicacional.</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check" class="text-emerald-300 w-5 h-5"></i>
+                        </div>
+                        <p class="text-lg text-emerald-50 font-medium">Fortalecimiento de vinculación con stakeholders.</p>
+                    </div>
+                </div>
+                
+                <p class="text-xl text-emerald-200 font-semibold italic text-center max-w-3xl mx-auto leading-relaxed">
+                    "Este hito fortalece la propuesta frente a futuros fondos y alianzas, demostrando replicabilidad real en dos territorios distintos."
+                </p>
+            </div>
+
         </div>
     </section>
 
